@@ -26,7 +26,6 @@ const toggleHeader = () => {
 <style scoped lang="scss">
 .header {
   position: relative;
-  height: 100dvh;
   padding: torem(34) 0 torem(10);
   overflow: hidden;
 
@@ -38,6 +37,8 @@ const toggleHeader = () => {
   }
 
   &--open {
+    height: 100dvh;
+
     nav,
     .app-search {
       visibility: hidden;
@@ -58,6 +59,15 @@ const toggleHeader = () => {
       background-repeat: no-repeat;
       background-size: 100% 100%;
       z-index: -1;
+    }
+
+    + :deep(main) {
+      + .footer {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 }
