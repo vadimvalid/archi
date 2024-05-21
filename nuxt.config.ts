@@ -45,7 +45,4 @@ export default defineNuxtConfig({
       scrollBehaviorType: "smooth",
     },
   },
-  image: {
-    dir: "assets",
-  },
 });

@@ -1,8 +1,18 @@
 <template>
   <div class="app-nav-menu">
     <ul>
-      <li v-for="link in links" :key="link.name">
+      <li
+        v-for="link in links"
+        :key="link.name"
+        :class="{ hovered: link.isHovered }"
+      >
         <NuxtLink :to="link.to">{{ link.name }}</NuxtLink>
+        <NuxtImg
+          :src="link.image"
+          :alt="link.name"
+          v-if="link.image"
+          :class="{ [link.position]: link.position }"
+        />
       </li>
     </ul>
   </div>
@@ -16,16 +26,18 @@ const links = [
   },
   {
     to: "#",
-    name: "Architecture",
+    name: "Interior",
     isHovered: true,
     image: "/img/interior.png",
+    position: "right",
   },
   {
     to: "#",
-    name: "Interior",
+    name: "Architecture",
     isHovered: true,
     image: "/img/architecture.png",
   },
+
   {
     to: "#",
     name: "Contact",
@@ -50,6 +62,41 @@ const links = [
     flex-direction: column;
     align-items: center;
     gap: clamp(torem(20), 3vw, torem(40));
+
+    li {
+      &.hovered {
+        position: relative;
+
+        img {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: torem(218);
+          height: torem(316);
+          object-fit: contain;
+          opacity: 0;
+          transition: all 0.3s ease;
+          transform: scale(0);
+
+          &.right {
+            left: auto;
+            right: 0;
+          }
+        }
+
+        &:hover {
+          img {
+            display: block;
+            transform: translateX(-150%);
+            opacity: 1;
+
+            &.right {
+              transform: translateX(150%);
+            }
+          }
+        }
+      }
+    }
 
     a {
       font-family: "Playfair Display", serif;
