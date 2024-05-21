@@ -1,0 +1,32 @@
+// Colors
+$black: #333;
+$darkBlack: #444;
+$lightBlack: rgba(51, 51, 51, 0.5);
+$grey: rgba(0, 0, 0, 0.2);
+$lightGreen: rgba(74, 100, 36, 0.1);
+$green: #425a20;
+
+// Breakpoints
+$smBreakpoint: 768px;
+$mdBreakpoint: 1024px;
+
+// Borders
+$mainBorderRadius: 5px;
+
+// Mixins
+@mixin sm-breakpoint {
+  @media only screen and (min-width: $smBreakpoint) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
+  }
+}
+
+@function torem($value) {
+  $remValue: calc($value / 16) + rem;
+  @return $remValue;
+}
